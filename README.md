@@ -1,3 +1,7 @@
+## Preface
+
+Goal of this guildine was to provide better understanding for my team at the time of certain aspects of testing and improvements for it. Much of the information here is inspired from Rspec, and how the ruby community goes about testing. I just applied the ideas to the frontend environment and found that it works just as well.
+
 # UI Unit Testing Guidelines
 
 In order to have clean test cases we first need to make sure that we have clean units (components/classes/functions). Having a big and messy unit file will result in an even bigger and messier test file. So the very first thing we will be focusing on is not how to write your test files but actually a few key principles that should be applied to your unit files. These principles are Single Responsibility Principle and Law of Demeter. 
