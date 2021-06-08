@@ -1,6 +1,6 @@
 # UI Unit Testing Guidelines
 
-For any unit to be testable, and to make sure the test cases don't over grow and that they make sense, there are two key principles that we need to touch on before diving in, these are the following: Single Responsibility Principle and Law of Demeter. If the units that we write don't make sense our tests won't either.
+In order to have clean test cases we first need to make sure that we have clean units (components/classes/functions). Having a big and messy unit file will result in an even bigger and messier test file. So the very first thing we will be focusing on is not how to write your test files but actually a few key principles that should be applied to your unit files. These principles are Single Responsibility Principle and Law of Demeter. 
 
 ## Single Responsibility Principle (SRP)
 
@@ -23,9 +23,11 @@ Let’s take an example of what this all means: Let’s say your working with so
 
 ## What Should You Test?
 
-Easiest to define is what you shouldn't test, which is the internal mechanics of a unit. If you find your self testing how a unit works inside and asking for information about what the units internal state is doing you are testing implementation details, and it will create a very high level of coupling between the unit and the test cases. You shouldn't need to change a test case because you changed a variable name or function name.  So what should you test? Behaviour, the way we need to think about tests is in a blackbox style where you don't see how the internal mechanics work you have inputs going inside and outputs coming outside the box, you should always be testing for a given input what is the produced output. 
-Example: Lets take a component for example, you don't check what the components props look like or internal states, you give data for the props which is your input component internals do some magic, produces the markup which is the output that is what you want to test. To obtain different behaviours to write tests for different cases, you really have only 2 options you either interact with the markup which is the output or you introduce new input which should result in a different output, thats really the only 2 options that should concern you.
-Remember your tests should break if a functionality was changed, removed but your test should not break if you change a variable or function name. A good test does not mean that it should be a complicated test it should focus on behaviour and not tie the markup or implementation detail to test cases. Read more here and a nice video here.
+Easiest to define is what you shouldn't test, which is the internal mechanics of a unit. If you find your self testing how a unit works inside and asking for information about what the units internal state is doing you are testing **implementation details**. Testing this way will ultimately create a very high level of coupling between the unit and the test cases. You shouldn't need to change a test case because you changed a variable name or function name.  So what should you test? **Behaviour**. Testing should be done in a blackbox style, for a given set of inputs you are expecting some output. This way you don't have any knowledge of the internal state of a unit, you are simply giving different inputs and matching the produced output with assertions.
+
+Let's take a component for example, you don't check what the components props looks like or internal states, these should remain hidden from the outside world. You pass data through the props which are your inputs, afterwards the renderer renders the component leading to the output, the produced output should be where we match our assertions against. If your component can behave differently with different props, then test those cases the same way, modify the props to get different results. This is the only thing you should be playing with steering clear of the internal parts of a unit.
+
+Remember your tests should break if a functionality was changed/removed but your tests should not break if you change a variable or function name. A good test does not mean that it should be complicated or that it should have assertions for every inch of a components file, a lot of these are unnecessary couplings that actually do more bad than good.
 
 ## Grouping Your Tests with Describe
 
